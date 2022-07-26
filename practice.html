@@ -1,0 +1,145 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Template</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(26, 11, 44);
+            height: 100vh;
+            flex-direction: column;
+            color: white;
+            font-family: 'popins', sans-serif;
+        }
+
+        .mian {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 50px;
+            border-radius: 30px;
+        }
+
+        label {
+            font-size: 20px;
+        }
+
+        #password,
+        #no {
+            margin: 15px;
+            width: 400px;
+            border: none;
+            border: 3px solid tomato;
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 50px;
+            padding: 10px;
+            border-radius: 10px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .btn button {
+            width: 190px;
+            height: 50px;
+            border-radius: 10px;
+            background-color: tomato;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 5px;
+
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            display: block;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="mian">
+        <h1>Password generator</h1>
+        <label for="">Password will be display here</label> <br>
+        <input type="text" name="password" placeholder="your password will be here" id="password" name="passwordd"
+            value=""> <br>
+        <label for=""> Enter length of password </label> <br>
+        <input type="number" id="no" min="5" max="20" name=""> <br>
+        <div class="btn">
+            <div class="btnarea">
+                <button onclick="genratepassword()" type="submit">generate password</button>
+                <button onclick="copyy()" type="submit">copy text</button><br>
+            </div>
+            <div>
+                <button onclick="cleartext()"> clear text</button>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <script>
+        var password = document.getElementById('passwordd');
+
+        function genratepassword() {
+            var number = parseInt(document.getElementById('no').value);
+            console.log(number)
+            if (!number) {
+                alert("please enter the length of password")
+            }
+            else if (number < 5 || number > 20) {
+                alert("please enter the number greater then 5 and less then 20");
+            }
+            else if (number > 5 || number < 20) {
+                var charr = "3*%abcdet%*uv_=wx)";
+                var pass = '';
+                for (var i = 0; i < number; i++) {
+                    var results = (Math.floor(Math.random() * number) + 1);
+                    pass += charr.substring(results, results + 1)
+
+                }
+                document.getElementById("password").value = pass;
+                console.log(pass);
+            }
+
+        }
+        function copyy() {
+            var copytext = document.getElementById("password");
+            if (copytext == '') {
+                alert("no text found")
+            }
+            else {
+                copytext.select();
+                var done = document.execCommand("copy");
+                if (done) {
+                    alert("succesfully copy")
+                }
+
+            }
+
+        }
+        function cleartext() {
+            document.getElementById("password").value = '';
+            document.getElementById('no').value = '';
+        }
+
+    </script>
+</body>
+
+</html>
